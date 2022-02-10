@@ -7,6 +7,7 @@ import arc.scene.ui.layout.*;
 import arc.struct.*;
 import arc.util.io.*;
 import mindustry.gen.*;
+import mindustry.graphics.*;
 import mindustry.world.*;
 import mindustry.world.blocks.units.*;
 import unity.graphics.*;
@@ -122,6 +123,19 @@ public class TorqueUnitFactory extends UnitFactory implements GraphBlock{
 			UnityDrawf.drawRotRect(rotateRegion, x, y, 24f, 3.5f, 3.5f, fixedRot + 90f, rot, rot + 180f);
 			
 			Draw.rect(overlayRegion, x, y, fixedRot);
+			
+			//unit
+			if(currentPlan != -1){
+                UnitPlan plan = plans.get(currentPlan);
+                Draw.draw(Layer.blockOver, () -> Drawf.construct(this, plan.unit, rotdeg() - 90f, progress / plan.time, speedScl, time));
+            }
+			
+            Draw.z(Layer.blockOver);
+			
+            payRotation = rotdeg();
+            drawPayload();
+			
+            Draw.z(Layer.blockOver + 0.1f);
 			
 			if(topRegion.found()) Draw.rect(topRegion, x, y, fixedRot);
 			drawTeamTop();
