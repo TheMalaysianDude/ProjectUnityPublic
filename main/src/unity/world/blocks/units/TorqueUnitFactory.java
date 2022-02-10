@@ -39,7 +39,7 @@ public class TorqueUnitFactory extends UnitFactory implements GraphBlock{
 		
 		rotateRegion = atlas.find(name + "-moving");
 		mbaseRegion = atlas.find(name + "-mbase");
-		overlayRegion = atlas.find(Name + "-overlay");
+		overlayRegion = atlas.find(name + "-overlay");
 		
 		for(int i = 0; i < 2; i++){
             bottomRegions[i] = atlas.find(name + "-bottom" + (i + 1));
