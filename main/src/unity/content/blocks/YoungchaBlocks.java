@@ -15,8 +15,7 @@ import unity.world.blocks.production.*;
 import unity.world.blocks.units.*;
 import unity.world.graph.*;
 
-import static mindustry.type.ItemStack.*;
-//import static mindustry.type.ItemStack.with;
+import static mindustry.type.ItemStack.with;
 
 //frankly i do not wish to have my ide lag from an enormous unnavigable UnityBlocks file
 public class YoungchaBlocks{
@@ -35,8 +34,8 @@ public class YoungchaBlocks{
         windTurbine, rotaryWaterExtractor, flywheel,
         //production
         augerDrill,
-        //units
-        transmissionFactory,
+		//units
+		transmissionFactory,
     ///heat
         //transmission
         heatPipe, steamPiston,
@@ -134,13 +133,13 @@ public class YoungchaBlocks{
             config.nodeConfig.put(TorqueGraph.class, b -> new TorqueGraphNode(0.1f, 50f, b));
             config.fixedConnection(TorqueGraph.class, 0, 1, 0,  0, 0, 0,  0, 1, 0,  0, 0, 0);
         }};
-        
+		
 		transmissionFactory = new TorqueUnitFactory("transmission-factory"){{
 			health = 1050;
 			size = 3;
 
 			requirements(Category.units, with(Items.copper, 50, Items.lead, 120, Items.silicon));
-			plans = Seq.with(
+			plans = with(
                 new UnitPlan(UnitTypes.dagger, 60f * 15, with(Items.silicon, 10, Items.lead, 10)),
                 new UnitPlan(UnitTypes.crawler, 60f * 10, with(Items.silicon, 8, Items.coal, 10))
             );
