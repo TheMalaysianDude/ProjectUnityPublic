@@ -54,7 +54,7 @@ public class TorqueUnitFactory extends UnitFactory implements GraphBlock{
 	
 	@Override
 	public void drawPlace(int x, int y, int rotation, boolean valid){
-		draw.rect(region, x, y, rotation);
+		Draw.rect(region, x, y, rotation);
 	}
 	
 	@Override 
