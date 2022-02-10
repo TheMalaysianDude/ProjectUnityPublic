@@ -1,5 +1,6 @@
 package unity.content.blocks;
 
+import arc.struct.*;
 import mindustry.content.*;
 import mindustry.type.*;
 import mindustry.world.*;
@@ -138,10 +139,10 @@ public class YoungchaBlocks{
 			health = 1050;
 			size = 3;
 
-			requirements(Category.units, with(Items.copper, 50, Items.lead, 120, Items.silicon));
-			plans = with(
-                new UnitPlan(UnitTypes.dagger, 60f * 15, with(Items.silicon, 10, Items.lead, 10)),
-                new UnitPlan(UnitTypes.crawler, 60f * 10, with(Items.silicon, 8, Items.coal, 10))
+			requirements(Category.units, with(Items.copper, 50, Items.lead, 120, UnityItems.nickel, 80));
+			plans = Seq.with(
+                new UnitPlan(UnitTypes.dagger, 60f * 15, with(UnityItems.nickel, 10, Items.lead, 10)),
+                new UnitPlan(UnitTypes.crawler, 60f * 10, with(UnityItems.nickel, 8, Items.coal, 10))
             );
 			config.nodeConfig.put(TorqueGraph.class, b -> new TorqueGraphNode(0.1f, 50f, b));
 			config.fixedConnection(TorqueGraph.class, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0);
