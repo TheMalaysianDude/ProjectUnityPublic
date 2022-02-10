@@ -119,7 +119,7 @@ public class TorqueUnitFactory extends UnitFactory implements GraphBlock{
 			//shaft
 			Draw.rect(mbaseRegion, x, y, fixedRot);
 			
-			UnityDrawf.drawRotRect(rotateRegion, x, y, 24f, 3.5f, 3.5f, fixedRot, rot, rot + 180f);
+			UnityDrawf.drawRotRect(rotateRegion, x, y, 24f, 3.5f, 3.5f, fixedRot + 90f, rot, rot + 180f);
 			
 			Draw.rect(overlayRegion, x, y, fixedRot);
 			
