@@ -53,8 +53,8 @@ public class TorqueUnitFactory extends UnitFactory implements GraphBlock{
 	}
 	
 	@Override
-	public void drawPlace(int x, int y, int rotation, boolean valid){
-		Draw.rect(region, x, y, rotation);
+	public void drawRequestRegion(BuildPlan req, Eachable<BuildPlan> list){
+		Draw.rect(region, req.x, req.y, rotation);
 	}
 	
 	@Override 
@@ -120,7 +120,7 @@ public class TorqueUnitFactory extends UnitFactory implements GraphBlock{
 			//shaft
 			Draw.rect(mbaseRegion, x, y, fixedRot);
 			
-			UnityDrawf.drawRotRect(rotateRegion, x, y, 24f, 3.5f, 3.5f, fixedRot + 90f, rot, rot + 180f);
+			UnityDrawf.drawRotRect(rotateRegion, x, y, 24f, 3.5f, 3.5f, fixedRot - 90f, rot, rot + 180f);
 			
 			Draw.rect(overlayRegion, x, y, fixedRot);
 			
