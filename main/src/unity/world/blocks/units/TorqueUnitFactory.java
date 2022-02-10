@@ -18,9 +18,14 @@ public class TorqueUnitFactory extends UnitFactory implements GraphBlock{
 	public GraphBlockConfig config = new GraphBlockConfig(this);
 	public float maxSpeed = 50;
 	public float maxEfficiency = 2.5f;
+	
+	public final TextureRegion[] bottomRegions = new TextureRegion[2];
+	public TextureRegion rotateRegion, mbaseRegion, overlayRegion;
 
 	public TorqueUnitFactory(String name){
 		super(name);
+		
+		hasPower = false;
 	}
 	
 	@Override
@@ -31,6 +36,14 @@ public class TorqueUnitFactory extends UnitFactory implements GraphBlock{
 	@Override
 	public void load(){
 		super.load();
+		
+		rotateRegion = atlas.find(name + "-moving");
+		mbaseRegion = atlas.find(name + "-mbase");
+		overlayRegion = atlas.find(Name + "-overlay");
+		
+		for(int i = 0; i < 2; i++){
+            bottomRegions[i] = atlas.find(name + "-bottom" + (i + 1));
+        }
 	}
 	
 	@Override
@@ -93,7 +106,25 @@ public class TorqueUnitFactory extends UnitFactory implements GraphBlock{
 
         @Override
         public void draw(){
-			super.draw();
+			float rot = getGraph(TorqueGraph.class).rotation;
+			float fixedRot = (rotdeg() + 90f) % 180f - 90f;
+			
+			int variant = rotation % 2;
+			
+			float deg = rotation == 0 || rotation == 3 ? rot : -rot;
+			
+			Draw.rect(bottomRegions[variant], x, y);
+			Draw.rect(outRegion, x, y, rotdeg());
+			
+			//shaft
+			Draw.rect(mbaseRegion, x, y, fixedRot);
+			
+			UnityDrawf.drawRotRect(rotateRegion, x, y, 24f, 3.5f, 3.5f, fixedRot, rot, rot + 180f);
+			
+			Draw.rect(overlayRegion, x, y, fixedRot);
+			
+			if(topRegion.found()) Draw.rect(topRegion, x, y, fixedRot);
+			drawTeamTop();
         }
 
         @Override public OrderedMap<Class<? extends Graph>, GraphNode> getNodes(){
